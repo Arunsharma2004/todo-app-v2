@@ -3,12 +3,17 @@ import argparse
 from task import Task
 from storage import load_tasks, save_tasks
 
-
 def cmd_add(args):
     tasks = load_tasks()
-    tasks.append(Task(title=args.title, priority=args.priority))
+
+    title = args.title.strip()
+    if not title:
+        print("Error: task title cannot be empty.")
+        return
+
+    tasks.append(Task(title=title, priority=args.priority))
     save_tasks(tasks)
-    print(f"Added task: {args.title} (priority: {args.priority})")
+    print(f"Added task: {title} (priority: {args.priority})")
 
 
 def cmd_list(args):
