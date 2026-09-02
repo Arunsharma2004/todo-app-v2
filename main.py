@@ -11,6 +11,7 @@ def cmd_add(args):
         print("Error: task title cannot be empty.")
         return
 
+    title = args.title.strip()
     tasks.append(Task(title=title, priority=args.priority))
     save_tasks(tasks)
     print(f"Added task: {title} (priority: {args.priority})")
